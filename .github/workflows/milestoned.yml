@@ -1,0 +1,21 @@
+﻿name: Milestone Issue Backlog
+
+on:
+  issues
+
+jobs:
+  backlog:
+    name: Backlog
+    runs-on: ubuntu-20.04
+    steps:
+      - env:
+          issue: ${{ github.event.issue }}
+          id: ${{ github.event.issue.number }}
+          changes: ${{ github.event.issue.changes }}
+          label: ${{ github.event.issue.label}}
+          # milestone: ${{ github.event.issue.milestone }}
+        run: |
+          echo $issue
+          echo $id
+          echo $changes
+          echo $label
