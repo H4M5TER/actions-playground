@@ -4,7 +4,6 @@ const context = github.context
 
 async function run() {
   const issue = context.payload.issue
-  console.log(issue)
   if (issue.labels.find(v => v.name === 'plan'))
     return
   const { data } = await octokit.rest.issues.listForRepo({
@@ -13,7 +12,6 @@ async function run() {
     milestone: context.payload.milestone.number,
     labels: 'plan'
   })
-  console.log(data)
   if (data.length !== 1) {
     console.log('no or more than one plan')
     return
@@ -61,7 +59,6 @@ async function run() {
     issue_number: plan.number,
     body: above + new_backlog + below
   })
-  console.log(resp)
 }
 
 try {
